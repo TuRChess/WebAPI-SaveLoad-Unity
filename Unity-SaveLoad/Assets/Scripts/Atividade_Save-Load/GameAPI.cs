@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameAPI
 {
     private readonly HttpClient httpClient;
-    private const string BASE_URL = "https://68f974bdef8b2e621e7c1e71.mockapi.io";
+    private const string BASE_URL = "http://localhost:5109/api";
 
     public GameAPI()
     {

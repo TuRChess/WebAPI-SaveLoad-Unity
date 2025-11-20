@@ -46,7 +46,7 @@ namespace Save_Load_WebAPI.Controllers
         [Route("api/Player/{id}")]
         public IActionResult DeletePlayer(string id)
         {
-            var player = players.FirstOrDefault(a => a.Id == id);
+            var player = players.FirstOrDefault(p => p.Id == id);
             if (player == null)
             {
                 return NotFound();

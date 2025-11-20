@@ -50,9 +50,12 @@ public class UIManager : MonoBehaviour
         controlePlayer.SavePositions();
         Player player = controlePlayer.Player;
 
-        player = await Api.UpdatePlayer(player.id, player);
-        textLife.text = "Vida: " + player.Vida.ToString();
-        textItens.text = "Itens: " + player.QuantidadeItens.ToString();
+        if (player.Vida < 0)
+            player.Vida = 100;
+
+        player = await api.UpdatePlayer("1", player);
+        textLife.text = "Vida: " + player.Vida;
+        textItens.text = "Itens: " + player.QuantidadeItens;
         textPositions.text = $"X: {player.PosicaoX} Y: {player.PosicaoY} Z: {player.PosicaoZ}";
     }
 
@@ -68,7 +71,7 @@ public class UIManager : MonoBehaviour
         player.QuantidadeItens = 0;
 
         controlePlayer.AnularPosition();
-        player = await Api.UpdatePlayer(player.id, player);
+        player = await api.UpdatePlayer("1", player);
 
         SceneManager.LoadScene(0);
     }

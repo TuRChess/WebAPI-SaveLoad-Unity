@@ -27,6 +27,19 @@ public class PlayerControll : MonoBehaviour
             cameraTransform = Camera.main.transform;
 
         player = await UIManager.instance.Api.GetPlayer("1");
+
+        if (player == null)
+        {
+            Debug.LogError("Erro: API retornou player nulo");
+            return;
+        }
+
+        // Proteção importante
+        if (player.Vida <= 0)
+        {
+            Debug.LogWarning("Player veio com Vida <= 0, corrigindo para 100");
+            player.Vida = 100;
+        }
     }
 
     public Player Player { get { return player; } }
